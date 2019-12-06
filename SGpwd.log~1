@@ -1,0 +1,120 @@
+--- Job SGpwd.gms Start 12/05/19 14:16:00 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/cicada/Documents/DTU/OF/final/SGpwd.gms
+    PageSize 0
+    ScrDir /Users/cicada/Documents/DTU/OF/final/225a/
+    SysDir /Applications/GAMS28.2/sysdir/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 28.2.0   Copyright (C) 1987-2019 GAMS Development. All rights reserved
+Licensee: Course License Fall 2019                       G190805/0001AO-GEN
+          Technical University of Denmark, Management Engineering    DCE146
+          License for teaching and research at degree granting institutions
+          License Admin: Thomas Stidsen, thst@man.dtu.dk                   
+--- Starting compilation
+--- SGpwd.gms(16) 2 Mb
+--- GDXin=/Users/cicada/Documents/DTU/OF/final/Data.gdx
+--- SGpwd.gms(75) 10 Mb
+--- Starting execution: elapsed 0:00:00.024
+--- SGpwd.gms(45) 10 Mb
+--- SGpwd.gms(57) 10 Mb
+--- SGpwd.gms(61) 10 Mb
+--- SGpwd.gms(61) 11 Mb
+--- SGpwd.gms(61) 11 Mb
+--- SGpwd.gms(61) 12 Mb
+--- SGpwd.gms(61) 12 Mb  3 secs
+--- SGpwd.gms(61) 13 Mb  3 secs
+--- SGpwd.gms(61) 13 Mb  4 secs
+--- SGpwd.gms(61) 13 Mb  4 secs
+--- SGpwd.gms(61) 13 Mb  5 secs
+--- SGpwd.gms(61) 14 Mb  5 secs
+--- SGpwd.gms(61) 14 Mb  6 secs
+--- SGpwd.gms(61) 14 Mb  6 secs
+--- SGpwd.gms(61) 14 Mb  7 secs
+--- SGpwd.gms(61) 15 Mb  7 secs
+--- SGpwd.gms(61) 15 Mb  8 secs
+--- SGpwd.gms(61) 15 Mb  8 secs
+--- SGpwd.gms(61) 15 Mb  9 secs
+--- SGpwd.gms(61) 16 Mb  9 secs
+--- SGpwd.gms(61) 16 Mb  10 secs
+--- SGpwd.gms(61) 16 Mb  10 secs
+--- SGpwd.gms(61) 16 Mb  11 secs
+--- SGpwd.gms(61) 17 Mb  11 secs
+--- SGpwd.gms(61) 17 Mb  12 secs
+--- SGpwd.gms(61) 17 Mb  12 secs
+--- SGpwd.gms(61) 19 Mb  13 secs
+--- SGpwd.gms(61) 19 Mb  14 secs
+--- SGpwd.gms(61) 19 Mb  15 secs
+--- SGpwd.gms(61) 19 Mb  16 secs
+--- SGpwd.gms(61) 19 Mb  17 secs
+--- SGpwd.gms(61) 19 Mb  18 secs
+--- SGpwd.gms(61) 19 Mb  19 secs
+--- SGpwd.gms(61) 19 Mb  20 secs
+--- SGpwd.gms(61) 19 Mb  21 secs
+--- SGpwd.gms(61) 19 Mb  22 secs
+--- SGpwd.gms(61) 19 Mb  23 secs
+--- SGpwd.gms(61) 19 Mb  24 secs
+--- SGpwd.gms(61) 19 Mb  25 secs
+--- SGpwd.gms(61) 20 Mb  25 secs
+--- SGpwd.gms(61) 20 Mb  26 secs
+--- SGpwd.gms(61) 20 Mb  27 secs
+--- SGpwd.gms(61) 20 Mb  28 secs
+--- SGpwd.gms(61) 20 Mb  29 secs
+--- SGpwd.gms(61) 20 Mb  30 secs
+--- SGpwd.gms(61) 20 Mb  35 secs
+--- SGpwd.gms(61) 21 Mb  35 secs
+--- SGpwd.gms(61) 21 Mb  40 secs
+--- SGpwd.gms(61) 21 Mb  45 secs
+--- SGpwd.gms(61) 21 Mb  50 secs
+--- SGpwd.gms(61) 23 Mb  50 secs
+--- SGpwd.gms(61) 23 Mb  55 secs
+--- SGpwd.gms(61) 23 Mb  60 secs
+--- SGpwd.gms(61) 25 Mb  60 secs
+--- SGpwd.gms(61) 25 Mb  65 secs
+--- SGpwd.gms(61) 25 Mb  70 secs
+--- SGpwd.gms(61) 25 Mb  75 secs
+--- SGpwd.gms(61) 26 Mb  75 secs
+--- SGpwd.gms(61) 26 Mb  80 secs
+--- SGpwd.gms(61) 26 Mb  85 secs
+--- SGpwd.gms(61) 27 Mb  85 secs
+--- SGpwd.gms(61) 27 Mb  90 secs
+--- SGpwd.gms(61) 27 Mb  95 secs
+--- SGpwd.gms(61) 27 Mb  100 secs
+--- SGpwd.gms(61) 29 Mb  100 secs
+--- SGpwd.gms(61) 29 Mb  105 secs
+--- SGpwd.gms(61) 29 Mb  110 secs
+--- SGpwd.gms(61) 30 Mb  110 secs
+--- SGpwd.gms(61) 30 Mb  115 secs
+--- SGpwd.gms(61) 30 Mb  120 secs
+--- SGpwd.gms(61) 30 Mb  125 secs
+--- SGpwd.gms(61) 31 Mb  125 secs
+--- SGpwd.gms(61) 31 Mb  130 secs
+--- SGpwd.gms(61) 31 Mb  135 secs
+--- SGpwd.gms(61) 32 Mb  135 secs
+--- SGpwd.gms(61) 33 Mb  135 secs
+--- SGpwd.gms(61) 33 Mb  140 secs
+--- SGpwd.gms(61) 33 Mb  145 secs
+--- SGpwd.gms(61) 35 Mb  150 secs
+--- SGpwd.gms(61) 35 Mb  155 secs
+--- SGpwd.gms(61) 35 Mb  160 secs
+--- SGpwd.gms(61) 36 Mb  160 secs
+--- SGpwd.gms(61) 36 Mb  165 secs
+--- SGpwd.gms(61) 36 Mb  170 secs
+--- SGpwd.gms(61) 37 Mb  175 secs
+--- SGpwd.gms(61) 37 Mb  180 secs
+--- SGpwd.gms(61) 37 Mb  185 secs
+--- SGpwd.gms(61) 39 Mb  185 secs
+--- SGpwd.gms(61) 39 Mb  190 secs
+--- SGpwd.gms(61) 39 Mb  195 secs
+--- SGpwd.gms(61) 39 Mb  200 secs
+--- SGpwd.gms(61) 40 Mb  200 secs
+--- SGpwd.gms(61) 40 Mb  200 secs
+--- SGpwd.gms(61) 40 Mb  205 secs
+--- SGpwd.gms(61) 40 Mb  210 secs
+*** Error at line 67: Execution halted: Triggered by pending CtrlC event
+--- SGpwd.gms(61) 40 Mb 1 Error  210 secs
+*** Status: Execution error(s)
+--- Job SGpwd.gms Stop 12/05/19 14:19:33 elapsed 0:03:32.398

@@ -1,0 +1,60 @@
+--- Job CVaRModel_BootstrappedScenarios_Answer.gms Start 12/04/19 14:14:51 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    PageSize 0
+    ScrDir /Users/cicada/Documents/DTU/OF/final/225a/
+    SysDir /Applications/GAMS28.2/sysdir/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 28.2.0   Copyright (C) 1987-2019 GAMS Development. All rights reserved
+Licensee: Course License Fall 2019                       G190805/0001AO-GEN
+          Technical University of Denmark, Management Engineering    DCE146
+          License for teaching and research at degree granting institutions
+          License Admin: Thomas Stidsen, thst@man.dtu.dk                   
+--- Starting compilation
+--- CVaRModel_BootstrappedScenarios_Answer.gms(17) 2 Mb
+--- GDXin=/Users/cicada/Documents/DTU/OF/final/Scenarios01.gdx
+--- CVaRModel_BootstrappedScenarios_Answer.gms(18) 3 Mb 1 Error
+*** Error 495 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Load dimensions are different
+--- CVaRModel_BootstrappedScenarios_Answer.gms(44) 3 Mb 2 Errors
+*** Error 141 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- CVaRModel_BootstrappedScenarios_Answer.gms(116) 3 Mb 3 Errors
+*** Error 257 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Solve statement not checked because of previous errors
+--- CVaRModel_BootstrappedScenarios_Answer.gms(119) 3 Mb 6 Errors
+*** Error 141 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- CVaRModel_BootstrappedScenarios_Answer.gms(167) 3 Mb 7 Errors
+*** Error 257 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Solve statement not checked because of previous errors
+--- CVaRModel_BootstrappedScenarios_Answer.gms(175) 3 Mb 8 Errors
+*** Error 257 in /Users/cicada/Documents/DTU/OF/final/CVaRModel_BootstrappedScenarios_Answer.gms
+    Solve statement not checked because of previous errors
+--- CVaRModel_BootstrappedScenarios_Answer.gms(182) 3 Mb 8 Errors
+*** Status: Compilation error(s)
+--- Job CVaRModel_BootstrappedScenarios_Answer.gms Stop 12/04/19 14:14:51 elapsed 0:00:00.012

@@ -1,0 +1,234 @@
+--- Job CVaR_03TARGET.gms Start 12/06/19 12:58:03 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/cicada/Documents/DTU/OF/final/CVaR_03TARGET.gms
+    PageSize 0
+    ScrDir /Users/cicada/Documents/DTU/OF/final/225e/
+    SysDir /Applications/GAMS28.2/sysdir/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 28.2.0   Copyright (C) 1987-2019 GAMS Development. All rights reserved
+Licensee: Course License Fall 2019                       G190805/0001AO-GEN
+          Technical University of Denmark, Management Engineering    DCE146
+          License for teaching and research at degree granting institutions
+          License Admin: Thomas Stidsen, thst@man.dtu.dk                   
+--- Starting compilation
+--- CVaR_03TARGET.gms(26) 2 Mb
+--- GDXin=/Users/cicada/Documents/DTU/OF/final/RScen.gdx
+--- CVaR_03TARGET.gms(27) 74 Mb
+--- CVaR_03TARGET.gms(27) 95 Mb
+--- CVaR_03TARGET.gms(27) 169 Mb
+--- CVaR_03TARGET.gms(27) 189 Mb
+--- CVaR_03TARGET.gms(27) 265 Mb
+--- CVaR_03TARGET.gms(235) 278 Mb
+--- Starting execution: elapsed 0:00:00.795
+--- CVaR_03TARGET.gms(45) 279 Mb
+--- CVaR_03TARGET.gms(45) 348 Mb
+--- CVaR_03TARGET.gms(45) 367 Mb
+--- CVaR_03TARGET.gms(45) 455 Mb
+--- CVaR_03TARGET.gms(45) 481 Mb
+--- CVaR_03TARGET.gms(45) 481 Mb
+--- CVaR_03TARGET.gms(45) 482 Mb
+--- CVaR_03TARGET.gms(164) 483 Mb
+
+--- Generating MIP model CVaRModel
+--- CVaR_03TARGET.gms(165) 485 Mb
+---   506 rows  684 columns  46,618 non-zeroes
+--- Executing CPLEX: elapsed 0:00:03.427
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.03 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               120
+CPXPARAM_Tune_TimeLimit                          24
+Tried aggregator 1 time.
+LP Presolve eliminated 255 rows and 432 columns.
+Reduced LP has 251 rows, 252 columns, and 752 nonzeros.
+Presolve time = 0.00 sec. (2.80 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =             0.919079
+Iteration:    14   Dual objective     =         99764.372631
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 4.42 ticks)
+
+Optimal solution found.
+Objective :       91767.140894
+
+--- Restarting execution
+--- CVaR_03TARGET.gms(165) 280 Mb
+--- Reading solution for model CVaRModel
+--- Executing after solve: elapsed 0:00:04.867
+--- CVaR_03TARGET.gms(193) 282 Mb
+--- Generating LP model CVaRModel02
+--- CVaR_03TARGET.gms(215) 285 Mb
+--- LOOPS p = p2
+---   505 rows  684 columns  46,438 non-zeroes
+--- Executing CPLEX: elapsed 0:00:04.926
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.03 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               120
+CPXPARAM_Tune_TimeLimit                          24
+Tried aggregator 1 time.
+LP Presolve eliminated 254 rows and 432 columns.
+Reduced LP has 251 rows, 252 columns, and 752 nonzeros.
+Presolve time = 0.00 sec. (2.79 ticks)
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =             0.999000
+Iteration:    16   Dual objective     =        102797.975527
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 5.86 ticks)
+
+Optimal solution found.
+Objective :       95075.023546
+
+--- Restarting execution
+--- CVaR_03TARGET.gms(215) 280 Mb
+--- Reading solution for model CVaRModel02
+--- Executing after solve: elapsed 0:00:06.345
+--- CVaR_03TARGET.gms(193) 282 Mb
+--- Generating LP model CVaRModel02
+--- CVaR_03TARGET.gms(215) 285 Mb
+--- LOOPS p = p3
+---   505 rows  684 columns  46,438 non-zeroes
+--- Executing CPLEX: elapsed 0:00:06.407
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.03 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               120
+CPXPARAM_Tune_TimeLimit                          24
+Tried aggregator 1 time.
+LP Presolve eliminated 254 rows and 432 columns.
+Reduced LP has 251 rows, 252 columns, and 752 nonzeros.
+Presolve time = 0.00 sec. (2.79 ticks)
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =             0.999000
+Iteration:    16   Dual objective     =        105755.405825
+LP status(1): optimal
+Cplex Time: 0.01sec (det. 5.91 ticks)
+
+Optimal solution found.
+Objective :       95772.041165
+
+--- Restarting execution
+--- CVaR_03TARGET.gms(215) 280 Mb
+--- Reading solution for model CVaRModel02
+--- Executing after solve: elapsed 0:00:07.815
+--- CVaR_03TARGET.gms(193) 282 Mb
+--- Generating LP model CVaRModel02
+--- CVaR_03TARGET.gms(215) 285 Mb
+--- LOOPS p = p4
+---   505 rows  684 columns  46,438 non-zeroes
+--- Executing CPLEX: elapsed 0:00:07.875
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.03 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               120
+CPXPARAM_Tune_TimeLimit                          24
+Tried aggregator 1 time.
+LP Presolve eliminated 254 rows and 432 columns.
+Reduced LP has 251 rows, 252 columns, and 752 nonzeros.
+Presolve time = 0.00 sec. (2.79 ticks)
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =             0.999000
+Iteration:    16   Dual objective     =        100775.960168
+LP status(1): optimal
+Cplex Time: 0.01sec (det. 5.90 ticks)
+
+Optimal solution found.
+Objective :       91269.714085
+
+--- Restarting execution
+--- CVaR_03TARGET.gms(215) 280 Mb
+--- Reading solution for model CVaRModel02
+--- Executing after solve: elapsed 0:00:09.288
+--- CVaR_03TARGET.gms(193) 282 Mb
+--- Generating LP model CVaRModel02
+--- CVaR_03TARGET.gms(215) 285 Mb
+--- LOOPS p = p5
+---   505 rows  684 columns  46,438 non-zeroes
+--- Executing CPLEX: elapsed 0:00:09.346
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.03 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               120
+CPXPARAM_Tune_TimeLimit                          24
+Tried aggregator 1 time.
+LP Presolve eliminated 254 rows and 432 columns.
+Reduced LP has 251 rows, 252 columns, and 752 nonzeros.
+Presolve time = 0.00 sec. (2.79 ticks)
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =             0.999000
+Iteration:    16   Dual objective     =        103076.849509
+LP status(1): optimal
+Cplex Time: 0.01sec (det. 5.91 ticks)
+
+Optimal solution found.
+Objective :       93083.622735
+
+--- Restarting execution
+--- CVaR_03TARGET.gms(215) 280 Mb
+--- Reading solution for model CVaRModel02
+--- Executing after solve: elapsed 0:00:10.781
+--- CVaR_03TARGET.gms(193) 281 Mb
+*** Error at line 215: Execution halted: Triggered by pending CtrlC event
+--- CVaR_03TARGET.gms(193) 281 Mb 1 Error
+*** Status: Execution error(s)
+--- Job CVaR_03TARGET.gms Stop 12/06/19 12:58:14 elapsed 0:00:10.781

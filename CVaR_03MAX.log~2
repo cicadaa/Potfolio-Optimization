@@ -1,0 +1,555 @@
+--- Job CVaR_03MAX.gms Start 12/05/19 22:36:23 28.2.0 r750fa45 DEX-DEG x86 64bit/Mac OS X
+--- GAMS Parameters defined
+    Input /Users/cicada/Documents/DTU/OF/final/CVaR_03MAX.gms
+    PageSize 0
+    ScrDir /Users/cicada/Documents/DTU/OF/final/225e/
+    SysDir /Applications/GAMS28.2/sysdir/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 28.2.0   Copyright (C) 1987-2019 GAMS Development. All rights reserved
+Licensee: Course License Fall 2019                       G190805/0001AO-GEN
+          Technical University of Denmark, Management Engineering    DCE146
+          License for teaching and research at degree granting institutions
+          License Admin: Thomas Stidsen, thst@man.dtu.dk                   
+--- Starting compilation
+--- CVaR_03MAX.gms(26) 2 Mb
+--- GDXin=/Users/cicada/Documents/DTU/OF/final/RScen.gdx
+--- CVaR_03MAX.gms(27) 69 Mb
+--- CVaR_03MAX.gms(27) 92 Mb
+--- CVaR_03MAX.gms(27) 165 Mb
+--- CVaR_03MAX.gms(27) 185 Mb
+--- CVaR_03MAX.gms(27) 260 Mb
+--- CVaR_03MAX.gms(44) 278 Mb
+--- CVaR_03MAX.gms(52) 278 Mb
+
+--- GDXin=/Users/cicada/Documents/DTU/OF/final/Targets_new.gdx
+--- CVaR_03MAX.gms(266) 278 Mb
+--- Starting execution: elapsed 0:00:00.847
+--- CVaR_03MAX.gms(71) 279 Mb
+--- CVaR_03MAX.gms(71) 334 Mb
+--- CVaR_03MAX.gms(71) 358 Mb
+--- CVaR_03MAX.gms(71) 446 Mb
+--- CVaR_03MAX.gms(71) 470 Mb
+--- CVaR_03MAX.gms(71) 481 Mb
+--- CVaR_03MAX.gms(71) 482 Mb
+--- CVaR_03MAX.gms(197) 483 Mb
+
+--- Generating MIP model CVaRModel
+--- CVaR_03MAX.gms(199) 485 Mb
+---   1,045 rows  1,224 columns  48,236 non-zeroes
+---   180 discrete-columns
+--- Executing CPLEX: elapsed 0:00:03.459
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.06 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 3 columns.
+MIP Presolve modified 45000 coefficients.
+Aggregator did 250 substitutions.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (130.20 ticks)
+Found incumbent of value 96681.368028 after 0.07 sec. (142.92 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (12.90 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (2.70 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        101594.087236
+Root relaxation solution time = 0.01 sec. (21.91 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        96681.3680  3611094.9425              --- 
+Found incumbent of value 96681.368028 after 0.11 sec. (186.19 ticks)
+      0     0   101281.8413     4    96681.3680   101281.8413       52    4.76%
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (186.83 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (186.83 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.11sec (det. 186.84 ticks)
+Fixing integer variables, and solving final LP...
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 1 time.
+LP Presolve eliminated 363 rows and 183 columns.
+Aggregator did 250 substitutions.
+Reduced LP has 432 rows, 791 columns, and 46471 nonzeros.
+Presolve time = 0.03 sec. (22.08 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =         97994.087236
+Fixed MIP status(1): optimal
+Cplex Time: 0.04sec (det. 49.46 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:        96681.368028    (52 iterations, 0 nodes)
+Final Solve:         97781.838333    (31 iterations)
+
+Best possible:      101281.841333
+Absolute gap:         4600.473305
+Relative gap:            0.045422
+
+--- Restarting execution
+--- CVaR_03MAX.gms(199) 280 Mb
+--- Reading solution for model CVaRModel
+--- Executing after solve: elapsed 0:00:05.099
+--- CVaR_03MAX.gms(235) 281 Mb
+--- Generating MIP model RevisionCVaRModel
+--- CVaR_03MAX.gms(244) 285 Mb
+--- LOOPS p = p2
+---   1,225 rows  1,584 columns  48,956 non-zeroes
+---   180 discrete-columns
+--- Executing CPLEX: elapsed 0:00:05.147
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.07 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 183 columns.
+MIP Presolve modified 45000 coefficients.
+Aggregator did 430 substitutions.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (131.86 ticks)
+Found incumbent of value 101109.563603 after 0.06 sec. (145.17 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (12.90 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (2.70 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        106022.331730
+Root relaxation solution time = 0.01 sec. (21.40 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       101109.5636  3611094.9425              --- 
+Found incumbent of value 101109.563603 after 0.11 sec. (188.00 ticks)
+      0     0   105683.0224     4   101109.5636   105683.0224       51    4.52%
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (188.65 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (188.65 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.11sec (det. 188.66 ticks)
+Fixing integer variables, and solving final LP...
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 1 time.
+LP Presolve eliminated 363 rows and 363 columns.
+Aggregator did 430 substitutions.
+Reduced LP has 432 rows, 791 columns, and 46471 nonzeros.
+Presolve time = 0.03 sec. (22.75 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        102422.331730
+Fixed MIP status(1): optimal
+Cplex Time: 0.04sec (det. 49.90 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:       101109.563603    (51 iterations, 0 nodes)
+Final Solve:        102187.392077    (29 iterations)
+
+Best possible:      105683.022430
+Absolute gap:         4573.458826
+Relative gap:            0.043275
+
+--- Restarting execution
+--- CVaR_03MAX.gms(244) 280 Mb
+--- Reading solution for model RevisionCVaRModel
+--- Executing after solve: elapsed 0:00:06.722
+--- CVaR_03MAX.gms(235) 281 Mb
+--- Generating MIP model RevisionCVaRModel
+--- CVaR_03MAX.gms(244) 285 Mb
+--- LOOPS p = p3
+---   1,225 rows  1,584 columns  48,956 non-zeroes
+---   180 discrete-columns
+--- Executing CPLEX: elapsed 0:00:06.841
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.07 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 183 columns.
+MIP Presolve modified 45000 coefficients.
+Aggregator did 430 substitutions.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (131.86 ticks)
+Found incumbent of value 102604.963474 after 0.06 sec. (145.46 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (12.90 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (2.70 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        107562.585119
+Root relaxation solution time = 0.01 sec. (24.57 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       102604.9635  3611094.9425              --- 
+Found incumbent of value 102604.963474 after 0.11 sec. (191.46 ticks)
+      0     0   107146.1724     4   102604.9635   107146.1724       76    4.43%
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (192.10 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (192.10 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.11sec (det. 192.11 ticks)
+Fixing integer variables, and solving final LP...
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 1 time.
+LP Presolve eliminated 363 rows and 363 columns.
+Aggregator did 430 substitutions.
+Reduced LP has 432 rows, 791 columns, and 46471 nonzeros.
+Presolve time = 0.03 sec. (22.75 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        103962.585119
+Fixed MIP status(1): optimal
+Cplex Time: 0.04sec (det. 50.23 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:       102604.963474    (76 iterations, 0 nodes)
+Final Solve:        103652.062856    (32 iterations)
+
+Best possible:      107146.172376
+Absolute gap:         4541.208902
+Relative gap:            0.042383
+
+--- Restarting execution
+--- CVaR_03MAX.gms(244) 280 Mb
+--- Reading solution for model RevisionCVaRModel
+--- Executing after solve: elapsed 0:00:08.408
+--- CVaR_03MAX.gms(235) 281 Mb
+--- Generating MIP model RevisionCVaRModel
+--- CVaR_03MAX.gms(244) 285 Mb
+--- LOOPS p = p4
+---   1,225 rows  1,584 columns  48,956 non-zeroes
+---   180 discrete-columns
+--- Executing CPLEX: elapsed 0:00:08.530
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.07 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 183 columns.
+MIP Presolve modified 45000 coefficients.
+Aggregator did 430 substitutions.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (131.86 ticks)
+Found incumbent of value 101893.946886 after 0.06 sec. (145.16 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (12.90 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (2.70 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        106655.274114
+Root relaxation solution time = 0.01 sec. (23.05 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       101893.9469  3611094.9425              --- 
+Found incumbent of value 101893.946886 after 0.11 sec. (189.64 ticks)
+      0     0   106459.1960     6   101893.9469   106459.1960       62    4.48%
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (190.29 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (190.29 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.11sec (det. 190.29 ticks)
+Fixing integer variables, and solving final LP...
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 1 time.
+LP Presolve eliminated 363 rows and 363 columns.
+Aggregator did 430 substitutions.
+Reduced LP has 432 rows, 791 columns, and 46471 nonzeros.
+Presolve time = 0.03 sec. (22.75 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        103055.274114
+Fixed MIP status(1): optimal
+Cplex Time: 0.04sec (det. 49.83 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:       101893.946886    (62 iterations, 0 nodes)
+Final Solve:        102964.190447    (28 iterations)
+
+Best possible:      106459.196015
+Absolute gap:         4565.249129
+Relative gap:            0.042883
+
+--- Restarting execution
+--- CVaR_03MAX.gms(244) 280 Mb
+--- Reading solution for model RevisionCVaRModel
+--- Executing after solve: elapsed 0:00:10.101
+--- CVaR_03MAX.gms(235) 281 Mb
+--- Generating MIP model RevisionCVaRModel
+--- CVaR_03MAX.gms(244) 285 Mb
+--- LOOPS p = p5
+---   1,225 rows  1,584 columns  48,956 non-zeroes
+---   180 discrete-columns
+--- Executing CPLEX: elapsed 0:00:10.223
+
+IBM ILOG CPLEX   28.2.0 r750fa45 Released Aug 19, 2019 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.9.0.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.07 Mb
+Use option 'names no' to turn use of names off
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 2 times.
+MIP Presolve eliminated 3 rows and 183 columns.
+MIP Presolve modified 45000 coefficients.
+Aggregator did 430 substitutions.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.05 sec. (131.86 ticks)
+Found incumbent of value 106587.839648 after 0.06 sec. (145.16 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 792 rows, 971 columns, and 46941 nonzeros.
+Reduced MIP has 180 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (12.90 ticks)
+Probing time = 0.00 sec. (1.27 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (2.70 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        111379.945983
+Root relaxation solution time = 0.01 sec. (22.66 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       106587.8396  3611094.9425              --- 
+Found incumbent of value 106587.839648 after 0.11 sec. (189.24 ticks)
+      0     0   111159.2038     6   106587.8396   111159.2038       59    4.29%
+
+Root node processing (before b&c):
+  Real time             =    0.11 sec. (189.89 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.11 sec. (189.89 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.11sec (det. 189.89 ticks)
+Fixing integer variables, and solving final LP...
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_Simplex_Limits_Iterations               2000000000
+CPXPARAM_TimeLimit                               1000
+CPXPARAM_Tune_TimeLimit                          200
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+CPXPARAM_WorkDir                                 "/Users/cicada/Documents/DTU/OF/final/225e/"
+Tried aggregator 1 time.
+LP Presolve eliminated 363 rows and 363 columns.
+Aggregator did 430 substitutions.
+Reduced LP has 432 rows, 791 columns, and 46471 nonzeros.
+Presolve time = 0.03 sec. (22.75 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =        107779.945983
+Fixed MIP status(1): optimal
+Cplex Time: 0.04sec (det. 49.85 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:       106587.839648    (59 iterations, 0 nodes)
+Final Solve:        107668.863622    (28 iterations)
+
+Best possible:      111159.203834
+Absolute gap:         4571.364186
+Relative gap:            0.041124
+
+--- Restarting execution
+--- CVaR_03MAX.gms(244) 280 Mb
+--- Reading solution for model RevisionCVaRModel
+--- Executing after solve: elapsed 0:00:11.807
+--- CVaR_03MAX.gms(235) 281 Mb
+*** Status: Normal completion
+--- Job CVaR_03MAX.gms Stop 12/05/19 22:36:35 elapsed 0:00:11.883
