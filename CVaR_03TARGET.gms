@@ -61,6 +61,8 @@ PARAMETERS
         pr(s)       'Scenario probability'
         FP(i,s)      'Final values'
         EP(i)       'Expected final values'
+        
+        InitHold(i)
 ;
 
 pr(s) = 1.0 / CARD(s);
@@ -84,6 +86,7 @@ BINARY VARIABLE
 
 PARAMETER
     xlow(i)    'lower bound for active variables' ;
+    
 
 // In case short sales are allowed these bounds must be set properly.
 xlow(i) = 0.0;
@@ -117,6 +120,9 @@ EQUATIONS
          CVaRLimCon      'Constraint limiting the CVaR'
          ReturnLimCon    'Constraint on a minimum expected return'
          
+        ReturnCon02
+        LossDefCon02(s) 
+         
    
 
 ;
@@ -128,8 +134,11 @@ EQUATIONS
 BudgetCon ..             sum(i, x(i)) =E= Budget;
 
 ReturnCon ..             ExpectedReturn =E= sum(i, EP(i)*x(i));
+ReturnCon02 ..           ExpectedReturn =E= sum(i, EP(i)*InitHold(i));
 
 LossDefCon(s) ..         Losses(s) =E= -1*sum(i, FP(i, s)*x(i) );
+LossDefCon02(s) ..       Losses(s) =E= -1*sum(i, FP(i, s)*InitHold(i) );
+
 
 VaRDevCon(s) ..          VaRDev(s) =G= Losses(s) - VaR;
 
@@ -161,7 +170,7 @@ MODEL CVaRModel02 'The Conditional Value-at-Risk Model' / ReturnCon, LossDefCon,
 
 *------------CVaR----------------------
 //We need both terms in the objective function to be under control in order for the model to calculate mean return and CVaR values correctly:
-lambda = 0.999;
+lambda = 0.5;
 SOLVE CVaRModel Maximizing OBJ Using MIP;
 
 
@@ -174,6 +183,7 @@ Parameters
         PortValue(s),
         Revision(p,i),
         Tot(p)
+        Totx(p) 
 ;
     PortValue(s) = sum(i, FP(i, s)*x.l(i) );
     BestCase(p)$(ord(p) eq 1) = Smax(s, PortValue(s));
@@ -183,39 +193,27 @@ AverageCase(p)$(ord(p) eq 1) = ExpectedReturn.l;
 MuTarget(p)$(ord(p) eq 1) = ExpectedReturn.l/Budget;
 CVaRTarget(p)$(ord(p) eq 1) = CVaR.L/Budget;
 
-Parameter
-        InitHold(i);
+
 
 
 *--s.t.---------------------------------------------------
 
 
 loop(p$(ord(p)>1 ),
-*and ord(p)<30),
+
     pr(s) = 1.0 / CARD(s);
 
-    Retscen(i,s) = AllRetScen(p,i,s);
-*    InitHold.l(i) = x.l(i)*PROD(t$PWD)(1+IndexReturns(t,i));
+*   Retscen(i,s) = AllRetScen(p,i,s)$(ord(p) 1 );
     InitHold(i) = x.l(i)*PROD(t$PD(p,t),(1+IndexReturns(i,t)));
-      Tot(p) = SUM(i,PROD(t$PD(p,t),(1+IndexReturns(i,t))))/180;
-    Budget = SUM(i,InitHold(i));
-    
-    X.fx(i)=  Budget/card(i);
-*    display x.l;
-*    SUM(i,PROD(t$PD(p,t),(1+IndexReturns(i,t))));
-*    Tot(p) = SUM(i,InitHold(i));
-*    display   Tot;
-    ExpRetLim = -SUM(i,InitHold(i));
-    CVaRLim = Budget*10;
-
+    X.fx(i)=  InitHold(i);
     FP(i,s) = 1 + RetScen( i, s );
     EP(i) = SUM(s, pr(s) * FP(i,s));
 
 
-    lambda = 0.999;
+    lambda = 0.5;
     SOLVE CVaRModel02 Maximizing obj Using LP;
-    
-    PortValue(s) = sum(i, FP(i, s)*x.l(i) );
+
+    PortValue(s) = sum(i, FP(i, s)*x.l(i));
     BestCase(p) = Smax(s, PortValue(s));
     WorstCase(p) = Smin(s, PortValue(s));
     
@@ -225,14 +223,8 @@ loop(p$(ord(p)>1 ),
  
 
     );
-    
-SCALAR
-muti;
-muti = PROD(p$(ord(p)>1 and ord(p)<186),Tot(p));
-DISPLAY muti,Tot; 
 
-
-EXECUTE_UNLOAD 'Targets_b.gdx',p,MuTarget,CVaRTarget,BestCase,AverageCase,WorstCase;
+EXECUTE_UNLOAD 'Targets_Fixed.gdx',p,MuTarget,CVaRTarget,BestCase,AverageCase,WorstCase;
 $exit 
 
 

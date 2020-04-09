@@ -29,9 +29,6 @@ $LOAD p,w,t, scen,PWD, Asset, AllRetScen, IndexReturns
 
 
 
-
-*display IndexReturns;
-
 scalar counter;
 counter=336;
 loop(p,
@@ -44,18 +41,18 @@ loop(p,
     );
 
 );
+
 PARAMETER
          RetScen(i, s)
          AllRetScen(p,i,s)
          MuTarget(p)
          CVaRTarget(p)
          ERMIN(p)
-         CVaRMIN(p)
-         AverageCase(p);
+         CVaRMIN(p);
 
 
 $GDXIN Targets_new
-$LOAD MuTarget,CVaRTarget,AverageCase
+$LOAD MuTarget,CVaRTarget
 $GDXIN
 
 
@@ -81,15 +78,6 @@ SCALARS
         Budget ;
 
 
-alpha  = 0.95;
-
-Budget = 100000;
-
-CVaRLim = Budget*10;
-
-ExpRetLim = 100000;
-
-RetScen(i, s) = SUM(p$(ord(p) eq 1),AllRetScen(p,i,s));
 
 
 PARAMETERS
@@ -97,13 +85,11 @@ PARAMETERS
         FP(i,s)      'Final values'
         EP(i)       'Expected final values'
         InitHold(i)
-;
+        Revision(p,i) 'revision data'
+ 
+      ;
 
-pr(s) = 1.0 / CARD(s);
 
-FP(i,s) = 1 + RetScen( i, s );
-
-EP(i) = SUM(s, pr(s) * FP(i,s));
 
 
 POSITIVE VARIABLES
@@ -139,11 +125,9 @@ VARIABLES
          obj             'objective function value'
          PortReturn;
 
-x_0.UP(i) = 20000;
 
 EQUATIONS
         
-
          BudgetCon       'Equation defining the budget constraint'
          ReturnCon       'Equation defining the portfolio expected return'
          LossDefCon(s)   'Equation defining the losses'
@@ -159,11 +143,6 @@ EQUATIONS
          LinCostBounds(i)     'Upper bonds for linear transaction fee'
          
          BalanceCon(i)
-         BinBuyLimits(i)
-         BinSellLimits(i)
-*         InCon
-         CVaRLimCon01
-         HoldingCon01(i)
          SellBuy
 ;
 
@@ -172,8 +151,9 @@ EQUATIONS
 *--Objective------
 
 BudgetCon ..             sum(i, x(i)) =E= Budget;
-*InCon ..                sum(i, x(i)) =E= SUM(i,InitHold(i));
+
 ReturnCon ..             ExpectedReturn =E= sum(i, EP(i)*x(i));
+
 
 LossDefCon(s) ..         Losses(s) =E= -1*sum(i, FP(i, s)*x(i) );
 
@@ -186,13 +166,12 @@ ReturnDefWithCost..      PortReturn =e= SUM(i, ( EP(i)*x_0(i) - FlatCost*Y(i) ) 
 
 ObjectivFunc ..          Obj =E= (1-lambda)*PortReturn - lambda*CVaR;
 
-CVaRLimCon ..             CVaR =L= CVaRLim;
+CVaRLimCon ..            CVaR =L= CVaRLim;
 
-ReturnLimCon ..           ExpectedReturn =G= ExpRetLim;
+ReturnLimCon ..          PortReturn =G= ExpRetLim;
 
 
 HoldingCon(i)..           x(i) =e= x_0(i) + x_1(i);
-*HoldingCon01(i)..         x(i) =e= x_0(i) + x_1(i); 
 
 FlatCostBounds(i)..       x_0(i) =l= x_0.UP(i) * Y(i);
 
@@ -203,79 +182,72 @@ BalanceCon(i)..           x(i) - buy(i) + sell(i) =e=  InitHold(i) ;
 
 SellBuy..                 SUM(i,buy(i)) =E=  SUM(i,sell(i));
 
-BinBuyLimits(i)..         buy(i)  =l=  Yb(i);
-
-BinSellLimits(i)..        sell(i)  =l=  Ys(i);
 
 
 
 
-MODEL CVaRModel 'The Conditional Value-at-Risk Model' /BudgetCon,ReturnCon, LossDefCon, VaRDevCon,CVaRDefCon, ObjectivFunc, ReturnLimCon,HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds/;
+*--models--------------------------------------------------------------------------------------
 
-//Let's maximize expected return with the target CVaR from the equal weight portfolio
 
-Lambda = 0.99;
+MODEL CVaRModel 'The Conditional Value-at-Risk Model' /BudgetCon,ReturnCon, LossDefCon, VaRDevCon,CVaRDefCon, ObjectivFunc,CVaRLimCon, ReturnLimCon,
+HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds/;
 
-*ExpRetLim = SUM(p$(ord(p) eq 1),AverageCase(p));
+
+MODEL RevisionCVaRModel 'The Conditional Value-at-Risk Model' /BalanceCon,SellBuy,LossDefCon,VaRDevCon,CVaRDefCon,ReturnCon
+ObjectivFunc,ReturnLimCon,CVaRLimCon,HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds/;
+
+
+alpha  = 0.95;
+
+Budget = 100000;
+
+RetScen(i, s) = SUM(p$(ord(p) eq 1),AllRetScen(p,i,s));
+
+pr(s) = 1.0 / CARD(s);
+FP(i,s) = 1 + RetScen( i, s );
+EP(i) = SUM(s, pr(s) * FP(i,s));
+
+x_0.UP(i) = 20000;
+
+Lambda = 0.5;
 ExpRetLim = SUM(p$(ord(p) eq 1),MuTarget(p))*Budget;
+CVaRLim = SUM(p$(ord(p) eq 1),CVaRtarget(p))*Budget;
 
-*Budget;
-*SOLVE CVaRModel Minimizing CVaR Using MIP;
-SOLVE CVaRModel Maximizing OBJ Using MIP;
-ERMIN(p)$(ord(p) eq 1) = ExpectedReturn.l;
-CVaRMIN(p)$(ord(p) eq 1) = CVaR.l;
-DISPLAY x.l,ExpRetLim;
-$exit
-Parameters
+SOLVE CVaRModel Minimizing CVaR Using MIP;
 
-    PortValue(s)
-    Revision(p,i)
-    Tot(p) 
-;
+ERMIN(p)$(ord(p) eq 1) = ExpectedReturn.l/Budget;
+CVaRMIN(p)$(ord(p) eq 1) = CVaR.l/Budget;
 
-*--s.t.---------------------------------------------------
+display x.l;
 
-MODEL RevisionCVaRModel 'The Conditional Value-at-Risk Model' /BalanceCon,SellBuy, ReturnCon,LossDefCon,VaRDevCon,CVaRDefCon,
-ObjectivFunc,ReturnLimCon,HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds /;
-//Retscen(i,s) = SUM(p$(ord(p) eq 2),AllRetScen(p,i,s) );
-//InitHold.l(i) = x.l(i)*SUM(s, pr(s) * (SUM(p$(ord(p) eq 2),AllRetScen(p,i,s) ) +1));
-
-//ExpRetLim = -SUM(p$(ord(p) eq 2), MuTarget(p));
-//CVaRLim = SUM(p$(ord(p) eq 2), CVaRtarget(p));
-
-   
-
-//Lambda = 0;
-//SOLVE RevisionCVaRModel Maximizing OBJ Using MIP;
+*--loop---------------------------------------------------
 
 
 
-loop(p$(ord(p)>1),
-*and ord(p)<20),
-    pr(s) = 1.0 / CARD(s);
+
+loop(p$(ord(p)>1and ord(p)<3 ),
+
     Retscen(i,s) = AllRetScen(p,i,s);
     InitHold(i) = x.l(i)*PROD(t$PD(p,t),(1+IndexReturns(i,t)));
-         
-    Tot(p) = SUM(i,InitHold(i))/SUM(i,x.l(i)); 
 
     ExpRetLim = MuTarget(p)*SUM(i,InitHold(i));
+    CVaRLim = CVaRtarget(p)*SUM(i,InitHold(i));
     FP(i,s) = 1 + RetScen( i, s );
     EP(i) = SUM(s, pr(s) * FP(i,s));
 
   
-    Lambda = 0.99;
-*    SOLVE RevisionCVaRModel Minimizing CVaR Using MIP;
-    SOLVE RevisionCVaRModel Maximizing OBJ Using MIP;
-    ERMIN(p) = ExpectedReturn.l;
-    CVaRMIN(p) = CVaR.l;
-    DISPLAY sell.l,buy.l,x.l,fp;
+    Lambda = 0.5;
+    SOLVE RevisionCVaRModel Minimizing CVaR Using MIP;
+
+    ERMIN(p) = ExpectedReturn.l/SUM(i,InitHold(i));
+    CVaRMIN(p) = CVaR.l/SUM(i,InitHold(i));
+    Revision(p,i) = x.l(i);
+
     );
-DISPLAY Tot;
-SCALAR
-muti;
-muti = PROD(p$(ord(p)>1 and ord(p)<186),Tot(p));
-DISPLAY muti; 
-EXECUTE_UNLOAD 'CVaR_MIN_d.gdx', ERMIN,CVaRMIN;
+display ERMIN,CVaRMIN;
+$exit  
+
+EXECUTE_UNLOAD 'CVaR_MIN_lambda0.5.gdx', Revision,ERMIN,CVaRMIN;
 
 
 

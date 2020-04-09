@@ -1,7 +1,6 @@
 $TITLE Value at Risk and Conditional Value at Risk models
-* VaR_CVaR.gms: Value at Risk and Conditional Value at Risk models.
+
 $eolcom //
-*option optcr=0, reslim=120;
 
 SET
          scen
@@ -19,13 +18,19 @@ ALIAS(scen, s);
 PARAMETER
          RetScen(i, s)
          AllRetScen(p,i,s)
-         IndexReturns(i,t)        
+         IndexReturns(i,t)   
+         PortValue(s)
+         Revision(p,i)
+  
+     
 ;
 
 
 $GDXIN RScen
 $LOAD p,w,t, scen,PWD, Asset, AllRetScen, IndexReturns
 $GDXIN
+
+
 scalar counter;
 counter=336;
 loop(p,
@@ -38,6 +43,7 @@ loop(p,
     );
 
 );
+
 PARAMETER
          RetScen(i, s)
          AllRetScen(p,i,s)
@@ -46,10 +52,7 @@ PARAMETER
          ERMAX(p)
          CVaRMAX(p);
 
-
-
-
-$GDXIN Targets_new
+$GDXIN Targets_l5
 $LOAD MuTarget,CVaRTarget
 $GDXIN
 
@@ -62,27 +65,13 @@ SCALARS
         Budget ;
 
 
-alpha  = 0.95;
-
-Budget = 100000;
-
-
-
-RetScen(i, s) = SUM(p$(ord(p) eq 1),AllRetScen(p,i,s));
-
 
 PARAMETERS
         pr(s)       'Scenario probability'
-        FP(i,s)      'Final values'
+        FP(i,s)     'Final values'
         EP(i)       'Expected final values'
         InitHold(i)
 ;
-
-pr(s) = 1.0 / CARD(s);
-
-FP(i,s) = 1 + RetScen( i, s );
-
-EP(i) = SUM(s, pr(s) * FP(i,s));
 
 
 POSITIVE VARIABLES
@@ -99,7 +88,6 @@ POSITIVE VARIABLES
 
 BINARY VARIABLE
     Y(i)          'Indicator variable for assets included in the portfolio'
-
     Yb(i) Indicator variable for assets to be purchased
     Ys(i) Indicator variable for assets to be sold;
 
@@ -118,13 +106,13 @@ VARIABLES
          obj             'objective function value'
          PortReturn;
 
-x_0.UP(i) = 20000;
+
 
 EQUATIONS
         
 
          BudgetCon       'Equation defining the budget constraint'
-*         ReturnCon       'Equation defining the portfolio expected return'
+         ReturnCon       'Equation defining the portfolio expected return'
          LossDefCon(s)   'Equation defining the losses'
          VaRDevCon(s)    'Equation defining the VaRDev variable'
          CVaRDefCon      'Equation defining the CVaR'
@@ -139,8 +127,7 @@ EQUATIONS
          
          BalanceCon(i)
          SellBuy
-   
-         
+
 ;
 
 
@@ -148,11 +135,8 @@ EQUATIONS
 *--Objective------
 
 BudgetCon ..             sum(i, x(i)) =E= Budget;
-*InCon ..                 sum(i, x(i)) =E= SUM(i,InitHold.l(i));
 
-
-
-*ReturnCon ..             ExpectedReturn =E= sum(i, EP(i)*x(i));
+ReturnCon ..             ExpectedReturn =E= sum(i, EP(i)*x(i));
 
 LossDefCon(s) ..         Losses(s) =E= -1*sum(i, FP(i, s)*x(i) );
 
@@ -163,11 +147,12 @@ CVaRDefCon ..            CVaR =E= VaR + (sum(s, pr(s)*VarDev(s) ) )/(1 - alpha);
 ReturnDefWithCost..      PortReturn =e= SUM(i, ( EP(i)*x_0(i) - FlatCost*Y(i) ) ) +
                           SUM(i, (EP(i) - PropCost)*x_1(i));
 
-ObjectivFunc ..          Obj =E= (1-lambda)*PortReturn - lambda*CVaR;
+ObjectivFunc ..          Obj =E= (1-lambda)*PortReturn - lambda*CVaR; 
 
 CVaRLimCon ..            CVaR =L= CVaRLim;
 
 ReturnLimCon ..          PortReturn =G= ExpRetLim;
+
 
 
 HoldingCon(i)..           x(i) =e= x_0(i) + x_1(i); 
@@ -179,80 +164,76 @@ LinCostBounds(i)..        x_1(i) =l= Y(i);
 
 BalanceCon(i)..           x(i) - buy(i) + sell(i) =e=  InitHold(i) ;
 
-*BinBuyLimits(i)..         buy(i)  =l=  Yb(i);
-
-*BinSellLimits(i)..        sell(i)  =l=  Ys(i);
-
 SellBuy..                 SUM(i,buy(i)) =E=  SUM(i,sell(i));
 
 
+*--models--------------------------------------------------------------------------------------
+
+MODEL CVaRModel 'The Conditional Value-at-Risk Model' /BudgetCon,ReturnCon, LossDefCon, VaRDevCon,CVaRDefCon,
+ObjectivFunc,CVaRLimCon,ReturnLimCon,HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds/;
 
 
-MODEL CVaRModel 'The Conditional Value-at-Risk Model' /BudgetCon,  LossDefCon, VaRDevCon,CVaRDefCon, ObjectivFunc, CVaRLimCon, 
- HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds/;
+MODEL RevisionCVaRModel 'The Conditional Value-at-Risk Model' /BalanceCon,ReturnCon,SellBuy,LossDefCon,VaRDevCon,CVaRDefCon,
+ObjectivFunc,HoldingCon,CVaRLimCon,ReturnLimCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds /;
 
-//Let's maximize expected return with the target CVaR from the equal weight portfolio
-Lambda = 0;
+
+
+
+
+alpha  = 0.95;
+
+Budget = 100000;
+
+RetScen(i, s) = SUM(p$(ord(p) eq 5),AllRetScen(p,i,s));
+
+pr(s) = 1.0 / CARD(s);
+
+FP(i,s) = 1 + RetScen( i, s ); 
+
+EP(i) = SUM(s, pr(s) * FP(i,s));
+
+x_0.UP(i) = 20000;
+Lambda = 0.5;
 CVaRLim = SUM(p$(ord(p) eq 1),CVaRtarget(p))*Budget;
 ExpRetLim = SUM(p$(ord(p) eq 1),MuTarget(p))*Budget;
 
 SOLVE CVaRModel Maximizing OBJ Using MIP;
-display X.l;
+
  
-ERMAX(p)$(ord(p) eq 1) = PortReturn.l;
-CVaRMAX(p)$(ord(p) eq 1) = CVaR.l;
+ERMAX(p)$(ord(p) eq 1) = ExpectedReturn.l/Budget;
+CVaRMAX(p)$(ord(p) eq 1) = CVaR.l/Budget;
 
 
-Parameters
-
-    PortValue(s)
-    Revision(p,i)
-     WHOLE(p)
-     
-;
-
-
+display x.l;
 *--s.t.---------------------------------------------------
 
 
       
 
-MODEL RevisionCVaRModel 'The Conditional Value-at-Risk Model' /BalanceCon, SellBuy,LossDefCon,VaRDevCon,CVaRDefCon,
-ObjectivFunc,CVaRLimCon,HoldingCon,ReturnDefWithCost,FlatCostBounds,LinCostBounds /;
-//Retscen(i,s) = SUM(p$(ord(p) eq 2),AllRetScen(p,i,s) );
-//InitHold.l(i) = x.l(i)*SUM(s, pr(s) * (SUM(p$(ord(p) eq 2),AllRetScen(p,i,s) ) +1));
 
-//ExpRetLim = -SUM(i,InitHold.l(i));
-//CVaRLim = SUM(p$(ord(p) eq 2), CVaRtarget(p));
-
-   
-
-//Lambda = 0;
-//SOLVE RevisionCVaRModel Maximizing OBJ Using RMIP;
-//DISPLAY sell.l,buy.l;
-
-
-loop(p$(ord(p)>1 ),
-*and ord(p)<6),   
-    Retscen(i,s) = AllRetScen(p,i,s);
+loop(p$(ord(p)>1 and ord(p)<3 ),
+  
+*    Retscen(i,s) = AllRetScen(p,i,s);
     InitHold(i) = x.l(i)*PROD(t$PD(p,t),(1+IndexReturns(i,t)));
-     
-    WHOLE(p) = SUM(i,PROD(t$PD(p,t),(1+IndexReturns(i,t))))/180; 
-   
-    CVaRLim = CVaRtarget(p)*SUM(i,InitHold(i)); 
+
+    CVaRLim = CVaRtarget(p)*SUM(i,InitHold(i));
+*    ExpRetLim = MuTarget(p)*SUM(i,InitHold(i));
+
     FP(i,s) = 1 + RetScen( i, s );
     EP(i) = SUM(s, pr(s) * FP(i,s));
  
-    Lambda = 0;
+    Lambda = 0.5;
     SOLVE RevisionCVaRModel Maximizing OBJ Using MIP;
-    ERMAX(p) = PortReturn.l;
-    CVaRMAX(p) = CVaR.l;
-    DISPLAY sell.l,buy.l,x.l;
+
+    ERMAX(p) = ExpectedReturn.l/SUM(i,InitHold(i));
+    CVaRMAX(p) = CVaR.l/SUM(i,InitHold(i));
+    Revision(p,i) = x.l(i);
+    display x.l;
     );
-    
 
-
-EXECUTE_UNLOAD 'CVaR_MAX.gdx', ERMAX,CVaRMAX;
+display ERMAX,CVaRMAX;
+$exit  
+EXECUTE_UNLOAD 'ER_MAX_Fixed5.gdx',Revision,ERMAX,CVaRMAX;
 
 
 
