@@ -1,4 +1,6 @@
 *.log*
 *.lst
-.lxi
+*.lxi
+*.gdx
+*.DS_Store
 
